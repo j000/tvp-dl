@@ -1,3 +1,4 @@
+#!/usr/bin/env python2
 import urllib2, json, sys, re
 url = sys.argv[1]
 
