@@ -37,12 +37,10 @@ elif re.findall('^.*\/(\d+)$', url): # URL provided ends with number (probably m
 else: # Something different. For example londyn2012.tvp.pl We've got to look for video_id=XXX
 	sys.stderr.write(' ~ reading page and looking for video_id...\n')
 	d = opener.open(url).read()
-	r = re.findall('video_id=(\d+)', d)
+	r = re.findall('(?:video|object)_id=(\d+)', d)
 	if not len(r):
-		sys.stderr.write(" ! Shit broke. No video_id's found.\n")
+		sys.stderr.write(" ! Shit broke. No video_id or object_id found.\n")
 		exit(1)
-	
 	else:
 		sys.stderr.write(" ~ Found %d video_id's: %s. Assuming first.\n" % (len(r), ', '.join(r)))
-		
 		p(r[0])
